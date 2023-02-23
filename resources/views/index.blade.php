@@ -55,12 +55,15 @@
 
             </div>
 
-            <div class="flex px-2 py-6">
-                <a class="flex-none" href="">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
-                </a>
+            <div class="flex flex-1 px-2 py-6">
+                <div class="flex-none">
+                    <a  href="">
+                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                    </a>
+                </div>
 
-                <div class="mx-4">
+
+                <div class="w-full mx-4">
                     <h4 class="text-xl font-semibold">
                         <a href="" class="hover:underline"> Title idea</a>
                     </h4>
@@ -84,7 +87,7 @@
                                 Open
                             </div>
 
-                            <button class="relative bg gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in px-3">
+                            <button class="relative bg gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in px-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                 </svg>
@@ -118,12 +121,12 @@
 
             </div>
 
-            <div class="flex px-2 py-6">
+            <div class="flex flex-1 px-2 py-6">
                 <a class="flex-none" href="">
                     <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
                 </a>
 
-                <div class="mx-4">
+                <div class="w-full mx-4">
                     <h4 class="text-xl font-semibold">
                         <a href="" class="hover:underline"> Title coba idea</a>
                     </h4>
@@ -147,7 +150,7 @@
                                 In Progress
                             </div>
 
-                            <button class="relative bg gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in px-3">
+                            <button class="relative bg gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in px-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                 </svg>
