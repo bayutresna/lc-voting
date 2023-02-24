@@ -3,12 +3,10 @@
     <div class="filters flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
         {{-- category filter --}}
         <div class="w-full md:w-1/3">
-            <select name="category" id="category" class="w-full border-none rounded-xl px-4 py-2">
-                <option value="C1"> Category 1</option>
-                <option value="C2"> Category 2</option>
-                <option value="C3"> Category 3</option>
-                <option value="C4"> Category 4</option>
-
+            <select name="category" id="category" class="w-full border-none rounded-xl px-4 py-2">    
+                {{-- @foreach ($ideas->category as $category) --}}
+                    {{-- <option value="{{ $category->id }}"> {{ $category->name }}</option> --}}
+                {{-- @endforeach --}}
             </select>
         </div>
         {{-- another filter --}}
@@ -72,7 +70,7 @@
                 <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
                     <div class="flex-none mx-2 md:mx-4">
                         <a href="">
-                            <img src="{{ asset('img/20190830_165252.jpg') }}" alt="avatar" class="w-14 h-14 rounded-xl">
+                            <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                         </a>
                     </div>
 
@@ -90,7 +88,7 @@
                             <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
                                 <div>{{ $idea->created_at->diffForHumans() }}</div>
                                 <div>&bull;</div>
-                                <div>Category 1</div>
+                                <div>{{ $idea->category->name }}</div>
                                 <div>&bull;</div>
                                 <div class="text-gray-900">5 Comments</div>
 
