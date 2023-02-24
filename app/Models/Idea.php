@@ -11,6 +11,10 @@ class Idea extends Model
     use HasFactory, Sluggable;
     protected $guarded=[];
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function sluggable(): array
     {
         return [

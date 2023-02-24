@@ -46,7 +46,5 @@ class User extends Authenticatable
         return $this->hasMany(Idea::class);
     }
 
-    public function user(){
-        $this->belongsTo(User::class);
-    }
+
 }
