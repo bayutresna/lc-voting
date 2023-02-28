@@ -10,11 +10,7 @@ module.exports = {
     theme: {
         extend: {
             colors:{
-                current: colors.current,
-                transparent: colors.transparent,
-                black: colors.black,
-                white: colors.white,
-                gray: colors.gray,
+                
                 'gray-background': '#f7f8fc',
                 'blue': '#328af1',
                 'blue-hover': '#2879bd',
@@ -22,6 +18,12 @@ module.exports = {
                 'red': '#ec454f',
                 'green': '#1aab8b',
                 'purple': '#8b60ed',
+                current: colors.current,
+                transparent: colors.transparent,
+                black: colors.black,
+                white: colors.white,
+                gray: colors.gray,
+
             },
             spacing:{
                 22: '5.5rem',
