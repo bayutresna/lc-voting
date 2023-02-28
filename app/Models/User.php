@@ -46,17 +46,25 @@ class User extends Authenticatable
         return $this->hasMany(Idea::class);
     }
 
+    public function votes(){
+        return $this->belongsToMany(Idea::class, 'votes');
+    }
+
     public function getAvatar(){
 
-        $firstChar = $this->email[0];
+        $firstCharacter = $this->email[0];
 
-        $randomInteger = $this->id % 36 ?: 36;
+        if (is_numeric($firstCharacter)) {
+            $integerToUse = ord(strtolower($firstCharacter)) - 21;
+        } else {
+            $integerToUse = ord(strtolower($firstCharacter)) - 96;
+        }
 
-        return "https://gravatar.com/avatar/"
+        return "https://www.gravatar.com/avatar/"
         .md5($this->email)
         ."?s=200"
         ."&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-"
-        .$randomInteger
+        .$integerToUse
         .'.png';
     }
 }

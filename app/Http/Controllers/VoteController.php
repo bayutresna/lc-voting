@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Models\Idea;
+
+use App\Http\Requests\StoreVoteRequest;
+use App\Http\Requests\UpdateVoteRequest;
 use App\Models\Vote;
-use Illuminate\Http\Request;
-class IdeaController extends Controller
+
+class VoteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,11 +15,9 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        return view('idea.index');
+        //
     }
 
-    
-    
     /**
      * Show the form for creating a new resource.
      *
@@ -26,57 +27,59 @@ class IdeaController extends Controller
     {
         //
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreVoteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVoteRequest $request)
     {
         //
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
-    public function show(Idea $idea)
+    public function show(Vote $vote)
     {
-        return view('idea.show', [
-            'idea' => $idea,
-            'votes' => $idea->votes()->count()
-        ]);
+        //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
-    public function edit(Idea $idea)
+    public function edit(Vote $vote)
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Http\Requests\UpdateVoteRequest  $request
+     * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Idea $idea)
+    public function update(UpdateVoteRequest $request, Vote $vote)
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Idea $idea)
+    public function destroy(Vote $vote)
     {
         //
     }
