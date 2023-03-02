@@ -21,7 +21,7 @@ class CreateIdeaTest extends TestCase
 
         $response->assertSuccessful();
         $response->assertSee('Please login to create an idea');
-        $response->assertDontSee('Let us know what you would like and we\'ll take a look');
+        $response->assertDontSee('Let us know what you would like and we\'ll take a look',false);
 
     }
 
@@ -60,10 +60,8 @@ class CreateIdeaTest extends TestCase
             $user = User::factory()->create();
 
             $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-            $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
     
-            $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-            $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+            $statusOpen = Status::factory()->create(['name' => 'Open']);
         
         
             Livewire::actingAs(User::factory()->create())
@@ -83,6 +81,11 @@ class CreateIdeaTest extends TestCase
                 'title'=> 'coba coba'
             ]);
 
+            $this->assertDatabaseHas('votes', [
+                'idea_id' => 1,
+                'user_id' => 2,
+            ]);
+
         }
 
              /** @test */
@@ -90,10 +93,8 @@ class CreateIdeaTest extends TestCase
                 $user = User::factory()->create();
     
                 $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-                $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
         
-                $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-                $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+                $statusOpen = Status::factory()->create(['name' => 'Open']);
             
             
                 Livewire::actingAs(User::factory()->create())

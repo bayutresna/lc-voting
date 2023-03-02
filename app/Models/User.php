@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Idea::class, 'votes');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function getAvatar(){
 
         $firstCharacter = $this->email[0];
@@ -66,5 +71,13 @@ class User extends Authenticatable
         ."&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-"
         .$integerToUse
         .'.png';
+    }
+
+    public function isAdmin(){
+        return in_array($this->email, [
+            'soloskadi@gmail.com',
+            'bayu@gmail.com',
+            'bayutresna@gmail.com'
+        ]);
     }
 }

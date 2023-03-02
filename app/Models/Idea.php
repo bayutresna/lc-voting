@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Idea extends Model
 {
     use HasFactory, Sluggable;
-    const PAGINATION_COUNT = 10;    
+    protected $perPage = 5;   
     protected $guarded=[];
 
     public function user(){
@@ -47,6 +47,11 @@ class Idea extends Model
             'idea_id'=>$this->id,
             'user_id'=> $user->id
         ]);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function unvote($user){

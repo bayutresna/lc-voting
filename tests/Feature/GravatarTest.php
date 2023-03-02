@@ -16,7 +16,6 @@ class GravatarTest extends TestCase
     public function user_can_generate_gravatar_default_image_when_no_email_found_first_character_a()
     {
         $user = User::factory()->create([
-            'name' => 'skadi',
             'email' => 'askadi@gmail.com',
         ]);
 
@@ -36,7 +35,6 @@ class GravatarTest extends TestCase
     public function user_can_generate_gravatar_default_image_when_no_email_found_first_character_z()
     {
         $user = User::factory()->create([
-            'name' => 'skadi',
             'email' => 'zskadi@gmail.com',
         ]);
 
@@ -56,7 +54,6 @@ class GravatarTest extends TestCase
     public function user_can_generate_gravatar_default_image_when_no_email_found_first_character_0()
     {
         $user = User::factory()->create([
-            'name' => 'skadi',
             'email' => '0skadi@gmail.com',
         ]);
 
@@ -76,7 +73,6 @@ class GravatarTest extends TestCase
     public function user_can_generate_gravatar_default_image_when_no_email_found_first_character_9()
     {
         $user = User::factory()->create([
-            'name' => 'skadi',
             'email' => '9skadi@gmail.com',
         ]);
 

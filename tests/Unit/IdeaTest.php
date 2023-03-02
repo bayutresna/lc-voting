@@ -21,21 +21,8 @@ class IdeaTest extends TestCase
         
         $user = User::factory()->create();
         $userb = User::factory()->create();
-
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
-
-        $idea = Idea::factory()->create([
-            'user_id'=> $user->id,
-            'title' => 'My First Idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'Description of my first idea',
-        ]);
+        
+        $idea = Idea::factory()->create();
 
         Vote::factory()->create([
             'idea_id'=>$idea->id,
@@ -52,41 +39,34 @@ class IdeaTest extends TestCase
         
         $user = User::factory()->create();
 
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id'=> $user->id,
-            'title' => 'My First Idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'Description of my first idea',
-        ]);
+        $idea = Idea::factory()->create();
         
         $this->assertFalse($idea->isVotedByUser($user));
 
         $idea->vote($user);
         $this->assertTrue($idea->isVotedByUser($user));
     }
+
+       /** @test */
+       public function user_can_unvote(){
+        
+        $user = User::factory()->create();
+        $idea = Idea::factory()->create();
+
+        Vote::factory()->create([
+            'idea_id'=>$idea->id,
+            'user_id' => $user->id
+        ]);
+        
+        $this->assertTrue($idea->isVotedByUser($user));
+        $idea->unvote($user);
+        $this->assertFalse($idea->isVotedByUser($user));
+    }
         /** @test */
     public function voting_an_already_voted_idea_for_throw_exception(){
         
         $user = User::factory()->create();
-
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id'=> $user->id,
-            'title' => 'My First Idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'Description of my first idea',
-        ]);
+        $idea = Idea::factory()->create();
 
         Vote::factory()->create([
             'idea_id'=>$idea->id,
@@ -101,50 +81,13 @@ class IdeaTest extends TestCase
     public function remove_voting_an_that_doesnt_exist_for_throw_exception(){
         
         $user = User::factory()->create();
-
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id'=> $user->id,
-            'title' => 'My First Idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'Description of my first idea',
-        ]);
-
         
+        $idea = Idea::factory()->create();
+
         $this->expectException(VoteNotFoundException::class);
+        
         $idea->unvote($user);
     }
 
-    /** @test */
-    public function user_can_unvote(){
-        
-        $user = User::factory()->create();
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id'=> $user->id,
-            'title' => 'My First Idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'Description of my first idea',
-        ]);
-
-        Vote::factory()->create([
-            'idea_id'=>$idea->id,
-            'user_id' => $user->id
-        ]);
-        
-        $this->assertTrue($idea->isVotedByUser($user));
-        $idea->unvote($user);
-        $this->assertFalse($idea->isVotedByUser($user));
-    }
 
 }

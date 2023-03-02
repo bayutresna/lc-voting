@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Livewire\Traits\WithAuthRedirects;
 use App\Models\Category;
 use App\Models\Idea;
 use Illuminate\Http\Response;
@@ -9,35 +10,39 @@ use Livewire\Component;
 
 class CreateIdea extends Component
 {
+    use WithAuthRedirects;
     public $title;
     public $category = 1;
     public $description;
 
     protected $rules = [
         'title' => 'required|min:4',
-        'category' => 'required|integer',
+        'category' => 'required|integer|exists:categories,id',
         'description' => 'required|min:4'
     ];
         
     public function createIdea(){
+        if (auth()->guest()) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
         $this->validate();
 
-        if(auth()->check()){
-            Idea::create([
-                'user_id'=>auth()->id(),
-                'category_id'=> $this->category,
-                'status_id'=> 2,
-                'title' => $this->title,
-                'description'=> $this->description
-            ]);
+        $idea = Idea::create([
+            'user_id' => auth()->id(),
+            'category_id' => $this->category,
+            'status_id' => 1,
+            'title' => $this->title,
+            'description' => $this->description,
+        ]);
 
-            session()->flash('success','Idea was submitted successfully');
+        $idea->vote(auth()->user());
 
-            $this->reset();
+        session()->flash('success_message', 'Idea was added successfully!');
 
-            return redirect()->route('idea.index');
-        }
-        abort(Response::HTTP_FORBIDDEN);
+        $this->reset();
+
+        return redirect()->route('idea.index');
     }
     public function render()
     {
